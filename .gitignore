@@ -1,0 +1,15 @@
+# Build artifacts
+build/
+/tmp/
+*.o
+*.swiftmodule
+*.dSYM/
+DerivedData/
+
+# Local-only files
+*.local
+.DS_Store
+
+# Secrets (none should ever live here)
+*.key
+*.pem

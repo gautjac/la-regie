@@ -1,0 +1,4 @@
+"CFBundleName" = "La Régie";
+"CFBundleDisplayName" = "La Régie";
+"NSDesktopFolderUsageDescription" = "La Régie opens the files and folders you pick for a scene.";
+"NSAppleEventsUsageDescription" = "La Régie can run a macOS Shortcut to set your Focus.";
