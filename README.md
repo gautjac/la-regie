@@ -37,6 +37,30 @@ le Focus Montage"), and La Régie runs it via `/usr/bin/shortcuts run "<name>"`.
 The editor lists your Shortcuts in a picker. The first time a scene runs a
 Shortcut, macOS asks to allow La Régie to control Shortcuts — approve once.
 
+### The window-layout bridge (L'Équerre)
+
+La Régie *launches* apps but deliberately never *positions* their windows — that
+needs the Accessibility API, and its sibling **[L'Équerre](../l-equerre)** (a
+menu-bar window manager) already owns it. Rather than duplicate that engine, a
+décor hands off:
+
+1. In L'Équerre, arrange your windows and **capture** the arrangement as a named
+   *disposition* (e.g. "Montage").
+2. In your La Régie décor, after the `Lancer une app` steps, add a short
+   **Pause** (≈1.5 s) then an **Ouvrir fichier / URL** action with:
+
+   ```
+   x-equerre://apply?name=Montage
+   ```
+
+One cue now opens the apps **and** snaps every window into place. L'Équerre
+retries placement as windows appear, so the Pause only needs to be a beat.
+
+The seeded **🎬 Montage** example décor is already wired this way — open it in
+the editor to see the pattern (create a "Montage" disposition in L'Équerre first,
+or change the `name=` to one you already have). Requires L'Équerre to be
+installed and granted Accessibility.
+
 ## Build
 
 ```sh

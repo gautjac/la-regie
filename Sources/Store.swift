@@ -134,6 +134,15 @@ final class Store: ObservableObject {
             { var a = SceneAction(kind: .hideOthers)
               a.keepBundleIDs = ["com.apple.FinalCut", "com.apple.Music"]; return a }(),
             { var a = SceneAction(kind: .setVolume); a.volume = 65; return a }(),
+            // Give the apps a beat to open their windows…
+            { var a = SceneAction(kind: .delay); a.seconds = 1.5; return a }(),
+            // …then hand off to L'Équerre, the window manager: it snaps every
+            // window into the saved "Montage" disposition. Create that
+            // disposition once in L'Équerre (arrange the windows → + to capture
+            // → name it "Montage"). L'Équerre retries placement, so windows land
+            // as they appear — no need for a longer pause here.
+            { var a = SceneAction(kind: .openItem)
+              a.urlString = "x-equerre://apply?name=Montage"; return a }(),
         ]
 
         // ── Écriture ─────────────────────────────────────────────
